@@ -358,6 +358,157 @@ s.Select
 
 End Sub
 
+Private Sub phase7_createPivotTable()
+'
+' Macro1 Macro
+'
+
+'
+    Columns("A:V").Select
+    Sheets.Add
+    ActiveWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:= _
+        "b2win!R1C1:R1048576C22", Version:=xlPivotTableVersion14).CreatePivotTable _
+        TableDestination:="Sheet1!R3C1", TableName:="PivotTable1", DefaultVersion _
+        :=xlPivotTableVersion14
+    Sheets("Sheet1").Select
+    Cells(3, 1).Select
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("ptIsBalanced")
+        .Orientation = xlRowField
+        .Position = 1
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("orderfamily")
+        .Orientation = xlRowField
+        .Position = 2
+    End With
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("orderfamily").Orientation _
+        = xlHidden
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("ref1family")
+        .Orientation = xlRowField
+        .Position = 2
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("ref1")
+        .Orientation = xlRowField
+        .Position = 3
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("code")
+        .Orientation = xlRowField
+        .Position = 4
+    End With
+    ActiveSheet.PivotTables("PivotTable1").PivotSelect "code[All]", xlLabelOnly + _
+        xlFirstRow, True
+    ActiveSheet.PivotTables("PivotTable1").RowAxisLayout xlTabularRow
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("ptIsBalanced")
+        .PivotItems("(blank)").Visible = False
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("ref1family")
+        .PivotItems("(blank)").Visible = False
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("ref1")
+        .PivotItems("(blank)").Visible = False
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("code")
+        .PivotItems("(blank)").Visible = False
+    End With
+    Columns("A:A").EntireColumn.AutoFit
+    Columns("B:B").EntireColumn.AutoFit
+    Columns("C:C").Select
+    Columns("C:C").EntireColumn.AutoFit
+    Columns("D:D").Select
+    Columns("D:D").EntireColumn.AutoFit
+    Range("D4").Select
+    ActiveSheet.PivotTables("PivotTable1").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable1").PivotFields("ar"), "Count of ar", xlCount
+    ActiveSheet.PivotTables("PivotTable1").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable1").PivotFields("order"), "Count of order", xlCount
+    ActiveSheet.PivotTables("PivotTable1").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable1").PivotFields("qty"), "Count of qty", xlCount
+    ActiveSheet.PivotTables("PivotTable1").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable1").PivotFields("amt"), "Count of amt", xlCount
+    ActiveWindow.SmallScroll Down:=0
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("leftright")
+        .Orientation = xlColumnField
+        .Position = 1
+    End With
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("leftright")
+        .PivotItems("(blank)").Visible = False
+    End With
+    Range("E6").Select
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("order").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("orderfamily").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ar").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("code").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("route").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ref1").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ref1family").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ref2").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("itemname").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("qty").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("unit").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("date").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("entryAmtIsZero").Subtotals _
+        = Array(False, False, False, False, False, False, False, False, False, False, False, False _
+        )
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ptAmtAvg").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ptAmtIsZero").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("amt").Subtotals = Array( _
+        False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("contains1899").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("balance").Subtotals = Array _
+        (False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("entryIsBalanced"). _
+        Subtotals = Array(False, False, False, False, False, False, False, False, False, False, _
+        False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ptEntryBalanceAvg"). _
+        Subtotals = Array(False, False, False, False, False, False, False, False, False, False, _
+        False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("ptIsBalanced").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables("PivotTable1").PivotFields("leftright").Subtotals = _
+        Array(False, False, False, False, False, False, False, False, False, False, False, False)
+    Range("E6").Select
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("Count of order")
+        .Caption = "Sum of order"
+        .Function = xlSum
+    End With
+    Range("F6").Select
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("Count of ar")
+        .Caption = "Sum of ar"
+        .Function = xlSum
+    End With
+    Range("G6").Select
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("Count of qty")
+        .Caption = "Sum of qty"
+        .Function = xlSum
+    End With
+    Range("H6").Select
+    With ActiveSheet.PivotTables("PivotTable1").PivotFields("Count of amt")
+        .Caption = "Sum of amt"
+        .Function = xlSum
+    End With
+    Cells.Select
+    Cells.EntireColumn.AutoFit
+    Columns("M:N").Select
+    Selection.ColumnWidth = 4.89
+    Range("I2").Select
+   
+End Sub
+
+
 Sub phase2_theRest()
 
     Call phase2_extractData
@@ -365,5 +516,6 @@ Sub phase2_theRest()
     Call phase4_deleteLinesWithZeroOrNonNumberQuantity
     Call phase5_deleteLinesWithZeroAmts
     Call phase6_addingDataMarkers
+    Call phase7_createPivotTable
     
 End Sub
